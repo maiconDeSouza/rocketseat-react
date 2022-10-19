@@ -6,6 +6,42 @@ import { User } from './User'
 import styles from './Post.module.css'
 
 export function Post(){
+    const comment = [
+        {
+            id: 1,
+            name: "Margaret Hamilton", 
+            avatar: "https://avatars.githubusercontent.com/u/102490893?v=4",
+            comment: "🚀🚀🚀🚀",
+            time: "45",
+            likes: "419"
+        },
+        {
+            id: 2,
+            name: "Bill Gates", 
+            avatar: "https://avatars.githubusercontent.com/u/16908999?v=4",
+            comment:"Boa Maicon!!!",
+            time:"44",
+            likes:"58"
+        },
+        {
+            id: 3,
+            name: "Steve Jobs",
+            avatar: "https://avatars.githubusercontent.com/u/10639145?v=4",
+            comment: "Parabéns, é isso ai!",
+            time: "23",
+            likes: "35"
+        },
+        {
+            id: 4,
+            name: "Linus Torvalds",
+            avatar: "https://avatars.githubusercontent.com/u/1024025?v=4",
+            comment: "Show de Bola",
+            time: "12",
+            likes: "297"
+        }
+        
+    ]
+
     return (
         <article className={styles.post}>
             <header>
@@ -44,28 +80,17 @@ export function Post(){
             </form>
 
             <div className={styles.commentList}>
-                <Comment 
-                    name="Bill Gates" 
-                    avatar="https://avatars.githubusercontent.com/u/16908999?v=4"
-                    comment="Boa Maicon!!!"
-                    time="45"
-                    likes="58"
-                />
-                <Comment 
-                    name="Steve Jobs"
-                    avatar="https://avatars.githubusercontent.com/u/10639145?v=4"
-                    comment="Parabéns, é isso ai!"
-                    time="23"
-                    likes="35"
-                />
-                <Comment 
-                    name="Linus Torvalds"
-                    avatar="https://avatars.githubusercontent.com/u/1024025?v=4"
-                    comment="Show de Bola"
-                    time="12"
-                    likes="297"
-                />
-
+                {comment.map(e => {
+                    return (
+                        <Comment 
+                            name={e.name}
+                            avatar={e.avatar}
+                            comment={e.comment}
+                            time={e.time}
+                            likes={e.likes}
+                        />
+                    )
+                })}
             </div>
         </article>
     )
