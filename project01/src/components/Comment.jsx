@@ -5,7 +5,6 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 import styles from './Comment.module.css'
 
 
-
 export function Comment({name, avatar, comment, time, likes}){
     return (
         <div className={styles.comment}>
