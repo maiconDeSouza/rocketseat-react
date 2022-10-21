@@ -98,7 +98,7 @@ function App() {
         <main>
           {post.map(e => {
             return (
-              <Post infoPost={e} key={e.id}/>
+              <Post key={e.id}  infoPost={e}/>
             )
           })}
           

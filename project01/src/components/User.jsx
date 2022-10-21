@@ -1,4 +1,4 @@
-import styles from './User.module.css'
+import  './User.module.css'
 
 export function User({name, status}){
     return (
