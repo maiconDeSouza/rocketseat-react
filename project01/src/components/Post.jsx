@@ -14,7 +14,7 @@ export function Post({infoPost}){
 
     function addComment(event){
         event.preventDefault()
-        const objComent = {
+        const objComment = {
             name: 'Maicon Souza',
             avatar: 'https://avatars.githubusercontent.com/u/67662178?v=4',
             comment: newComment,
@@ -22,15 +22,24 @@ export function Post({infoPost}){
             likes: 0
         }
         
-        SetComment([...comment, objComent])
+        SetComment([...comment, objComment])
         SetNewComment('')
     }
 
     function textareaNewComment(){ 
+        event.target.setCustomValidity('')
         SetNewComment(event.target.value)
 
     }
-    
+    function delComment(delComment){
+        const commentWithoutDeleteOne = comment.filter(e => e.comment !== delComment)
+        
+        SetComment(commentWithoutDeleteOne)
+    }
+
+    function newCommentIvalid(){
+        event.target.setCustomValidity('Este Campo é Obrigatório')
+    }
     return (
         <article className={styles.post}>
             <header>
@@ -69,9 +78,11 @@ export function Post({infoPost}){
                     name='valueComment'
                     onChange={textareaNewComment}
                     value={newComment}
+                    onInvalid={newCommentIvalid}
+                    required
                 />
                 <footer>
-                    <button>Comentar</button>
+                    <button disabled={newComment.length === 0}>Comentar</button>
                 </footer>
             </form>
 
@@ -85,6 +96,7 @@ export function Post({infoPost}){
                             comment={e.comment}
                             time={e.time}
                             likes={e.likes}
+                            delComment={delComment}
                         />
                     )
                 })}

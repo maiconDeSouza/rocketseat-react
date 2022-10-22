@@ -3,9 +3,23 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 
 
 import styles from './Comment.module.css'
+import { useState } from 'react'
 
 
-export function Comment({name, avatar, comment, time, likes}){
+export function Comment({name, avatar, comment, time, likes, delComment}){
+    const [likeCount, setLikeCount] = useState(Number(likes))
+
+    function addLike(){
+        // setLikeCount(likeCount + 1) assim da para ser feito, mas a melhor forma de ser feito é o de baixo
+        setLikeCount(state => state + 1) //Melho forma de atualizar um valor
+                        //ultimo estado - valor mais recente
+                        //Sempre que vc for realizar uma atualização e valor dependa do valor anterior,
+                        //usar essa estrategia 
+    }
+    
+    function deleteComment(){
+        delComment(comment)
+    }
     return (
         <div className={styles.comment}>
             <Image 
@@ -21,7 +35,10 @@ export function Comment({name, avatar, comment, time, likes}){
                             <time title='11 de Maio às 08:22h' dateTime='2022-05-11 08:22:38'>Cerca de {time} Minutos atrás</time>
                         </div>
 
-                        <button title='Deletar comentário'>
+                        <button 
+                            title='Deletar comentário'
+                            onClick={deleteComment}
+                        >
                             <Trash size={24}/>
                         </button>
                     </header>
@@ -31,9 +48,9 @@ export function Comment({name, avatar, comment, time, likes}){
                     </p>
                 </div>
                 <footer>
-                    <button>
+                    <button onClick={addLike}>
                         <ThumbsUp />
-                        Aplaudir <span>{likes}</span>
+                        Aplaudir <span>{likeCount}</span>
                     </button>
                 </footer>
             </div>
