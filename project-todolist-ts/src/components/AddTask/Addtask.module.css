@@ -23,6 +23,10 @@
     padding: 1rem;
 }
 
+.containerForm input:focus{
+    outline: none;
+}
+
 .containerForm button{
     width: 5.625rem;
     height: 3.25rem;
@@ -39,4 +43,10 @@
     justify-content: center;
     align-items: center;
     gap: 0.2rem;
+
+    cursor: pointer;
+}
+
+.containerForm button:active{
+    transform: scale(0.95);
 }
