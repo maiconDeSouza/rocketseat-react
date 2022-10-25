@@ -1,23 +1,17 @@
-import Logo from './assets/images/Logo.svg'
+import { Header } from './components/Header/Header'
+import { Addtask } from './components/AddTask/AddTask'
 
-import './global.css'
 import styles from './App.module.css'
-import { AddTasks } from './components/AddTasks/AddTasks'
-import { Tasks } from './components/Tasks/Tasks'
-
 
 export function App(){
-
+  
   return (
-    <div className={styles.main}>
-      
-      <header>
-        <img src={Logo} alt="logo" />
-      </header>
-
-      <AddTasks />
-
-      <Tasks />
+    <div>
+      <Header />
+      <div className={styles.container}>
+        <Addtask />
+        
+      </div>
     </div>
   )
 }

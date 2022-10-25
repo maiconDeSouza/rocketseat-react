@@ -1,20 +1,6 @@
-.main{
+.container{
+    width: 46rem;
+    max-width: 90vw;
     min-height: 100vh;
-    
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-
-.main > header{
-    background-color: var(--gray-700);
-
-    height: 12.5rem;
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
 }
