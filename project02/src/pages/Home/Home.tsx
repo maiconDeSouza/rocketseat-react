@@ -42,7 +42,7 @@ export function Home() {
     <HomeContainer>
       <form onSubmit={handleSubmit(handleCreateNewCycle)}>
         <FormContainer>
-          <label htmlFor="task">Voutrabalhar em</label>
+          <label htmlFor="task">Vou trabalhar em</label>
           <TaskInput
             id="task"
             type="text"
