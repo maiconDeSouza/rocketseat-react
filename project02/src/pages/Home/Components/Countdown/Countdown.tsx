@@ -1,6 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
+import { CyclesContext } from '../../Home'
 import { CountdownContainer, Separator } from './Countdown.styles'
-export function Countdown(){
+import { differenceInSeconds } from 'date-fns'
+
+export function Countdown() {
+  const { activeCycle, activeCycleID, markCurrentCycleAsFinished } =
+    useContext(CyclesContext)
   const [amountSecoondsPassesd, setAmountSecoondsPassesd] = useState(0)
 
   const totalSeconds = activeCycle ? activeCycle.minutesAmout * 60 : 0
@@ -21,15 +26,7 @@ export function Countdown(){
           activeCycle.startDate,
         )
         if (differenceSeconds >= totalSeconds) {
-          setCycles(
-            cycles.map((cycle) => {
-              if (cycle.id === activeCycleID) {
-                return { ...cycle, finishedDate: new Date() }
-              } else {
-                return cycle
-              }
-            }),
-          )
+          markCurrentCycleAsFinished()
           setAmountSecoondsPassesd(totalSeconds)
           clearInterval(clear)
         } else {
@@ -42,14 +39,22 @@ export function Countdown(){
         setAmountSecoondsPassesd(0)
       }
     }
-  }, [activeCycle, totalSeconds, activeCycleID, cycles])
-    return (
-        <CountdownwnContainer>
-          <span>{minutes[0]}</span>
-          <span>{minutes[1]}</span>
-          <Separatorarator>:</Separator>
-          <span>{seconds[0]}</span>
-          <span>{seconds[1]}</span>
-        </CountdownContainer>
-    )
+  }, [activeCycle, totalSeconds, activeCycleID, markCurrentCycleAsFinished])
+
+  useEffect(() => {
+    if (activeCycle) {
+      document.title = `${minutes}:${seconds}`
+    } else {
+      document.title = `Timer`
+    }
+  }, [minutes, seconds, activeCycle])
+  return (
+    <CountdownContainer>
+      <span>{minutes[0]}</span>
+      <span>{minutes[1]}</span>
+      <Separator>:</Separator>
+      <span>{seconds[0]}</span>
+      <span>{seconds[1]}</span>
+    </CountdownContainer>
+  )
 }
